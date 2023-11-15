@@ -1,8 +1,9 @@
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
+import { HomepageComponent } from './core/pages/homepage/homepage.component';
 
 @NgModule({
-    imports:[],
-    exports:[]
+  declarations: [HomepageComponent],
+  imports: [],
+  exports: [HomepageComponent],
 })
-
-export class CoreModule{}
+export class CoreModule {}
