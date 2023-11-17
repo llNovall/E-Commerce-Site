@@ -1,9 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
+  darkMode: "class",
   content: ["./src/**/*.{html,ts,scss}"],
   theme: {
-    extend: {},
+    fontFamily: {
+      sans: ["Josefin Sans", "Roboto", "sans-serif"]
+    },
+    extend: {
+      colors: {
+        "c1" : "#594545",
+        "c2" : "#815B5B",
+        "c3" : "#9E7676",
+        "c4" : "#FFF8EA"
+      }
+    },
+    
   },
   plugins: [],
 }
