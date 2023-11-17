@@ -8,6 +8,6 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [HomepageComponent, HeaderComponent, FooterComponent],
   imports: [RouterModule, CommonModule],
-  exports: [HomepageComponent],
+  exports: [HomepageComponent, HeaderComponent, FooterComponent],
 })
 export class CoreModule {}
