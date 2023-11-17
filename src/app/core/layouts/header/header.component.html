@@ -7,10 +7,15 @@
         </div>
         <div class="pe-2 flex flex-row md:absolute md:right-0 space-x-2 ">
 
-            <button class="flex transition-all duration-500 ease-in-out p-2 my-auto hover:bg-c2 rounded-sm border-2 border-c2">
+            <button class="group flex transition-all duration-500 ease-in-out p-2 my-auto hover:bg-c2 rounded-sm border-2 border-c2">
                 <span class="material-symbols-outlined self-center">
                     person
                 </span>
+                <div class="transition-all ease-in-out duration-700 hidden group-hover:flex flex-col absolute top-16 right-16 md:top-11 md:right-16 w-44 p-2 bg-c1 border-2 border-c2">
+                    <a *ngIf="!isLoggedIn" class="hover:bg-c2">Sign-In</a>
+                    <a *ngIf="isLoggedIn" class="hover:bg-c2">Logged in as {{loggedUserName}}</a>
+                    <a *ngIf="isLoggedIn" class="hover:bg-c2">Sign-Out</a>
+                </div>
             </button>
             <button class="flex transition-all duration-500 ease-in-out p-2 my-auto hover:bg-c2 rounded-sm border-2 border-c2">
                 <span class="material-symbols-outlined self-center">
