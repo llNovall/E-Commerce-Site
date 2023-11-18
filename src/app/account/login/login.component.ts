@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component} from '@angular/core';
 import { LoginModel } from '../models/login-model';
 import { NgForm } from '@angular/forms';
-import { AbstractAuthStateComponent } from '../abstract-authState-component';
+import { AbstractAuthStateComponent } from '../abstract-authstate-component';
 
 @Component({
   selector: 'account-layouts-login',
