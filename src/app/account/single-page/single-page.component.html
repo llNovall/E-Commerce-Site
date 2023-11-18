@@ -1,0 +1,35 @@
+<ng-container *ngIf="showPage">
+
+    <div class="transition-all ease-in-out duration-1000 absolute flex left-0 right-0 top-0 h-screen bg-opacity-60 hover:bg-opacity-80 bg-gray-950 z-20">
+
+        <div class="bg-opacity-100 w-96 self-center mx-auto text-c4 text-center border-2 border-c3">
+    
+            <div class="h-2 bg-c3 border-c1">
+                <div class="flex justify-end relative">
+                    <button class="absolute -right-4 -top-4" (click) = 'onClickClose()'>
+                        <span class="text-c4 text-4xl font-bold material-symbols-outlined">
+                            cancel
+                        </span>
+                    </button>
+                </div>
+            </div>
+    
+            <ng-container *ngIf="currentState == 'login'">
+                <account-layouts-login (authStateEmit) = "changeAccountState($event)"></account-layouts-login>
+            </ng-container>
+    
+            <ng-container *ngIf="currentState == 'passwordReset'">
+                <account-layouts-login></account-layouts-login>
+            </ng-container>
+    
+            <ng-container *ngIf="currentState == 'signup'">
+                <account-layout-sign-up></account-layout-sign-up>
+            </ng-container>
+    
+        </div>
+    
+    
+    </div>
+
+</ng-container>
+
