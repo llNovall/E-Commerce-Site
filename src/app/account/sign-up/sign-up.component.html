@@ -1,0 +1,62 @@
+<div class="bg-c1 py-2">
+    <div class="w-11/12 flex flex-col mx-auto">
+        <h2 class="text-xl">Sign Up</h2>
+        <p class="text-xs">Use the form below to create an account.</p>
+
+        <hr class="mx-auto mt-1 border w-full">
+        <form (submit)='onSubmit(loginForm)' #loginForm='ngForm'>
+            <div class="flex flex-col mt-2">
+                <label for="userName" class="text-sm text-start">Username<span class="text-red-600">*</span></label>
+                <input name="userName"
+                    class="transition-all ease-in-out duration-100 h-8 rounded-sm bg-c4 text-c1 font-bold px-2 focus-visible:rounded focus-visible:outline-none focus-visible:border-2 focus-visible:border-c2"
+                    type="text" placeholder="Enter your username" [(ngModel)]='signupModel.userName' required
+                    minlength="3" maxlength="20" #userName="ngModel">
+                <div class="text-end text-xs pe-1 mt-1">{{userName.value?.length}} /
+                    20</div>
+                <div *ngIf="userName.touched && userName.invalid" class="">
+                    <p *ngIf="userName.errors?.['required']" class="text-red-500 text-start text-sm font-bold">Username
+                        is required.</p>
+                    <p *ngIf="userName.errors?.['minlength']" class="text-red-500 text-start text-sm font-bold">Username
+                        must have at least 3 characters.</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col mt-2">
+                <label for="userEmail" class="text-sm text-start">Email<span class="text-red-600">*</span></label>
+                <input name="userEmail"
+                    class="transition-all ease-in-out duration-100 h-8 rounded-sm bg-c4 text-c1 font-bold px-2 focus-visible:rounded focus-visible:outline-none focus-visible:border-2 focus-visible:border-c2"
+                    type="email" placeholder="Enter your email" [(ngModel)]='signupModel.email' required
+                    minlength="3" maxlength="20" email #userEmail="ngModel">
+                <div *ngIf="userEmail.touched && userEmail.invalid" class="mt-2">
+                    <p *ngIf="userEmail.errors?.['required']" class="text-red-500 text-start text-sm font-bold">Email
+                        is required.</p>
+                    <p *ngIf="userEmail.errors?.['email']" class="text-red-500 text-start text-sm font-bold">Email has invalid format.</p>
+                </div>
+            </div>
+
+
+            <div class="flex flex-col mt-2">
+                <label for="userPassword" class="text-sm text-start">Password<span class="text-red-600">*</span></label>
+                <input name="userPassword"
+                    class="transition-all ease-in-out duration-100 h-8 rounded-sm bg-c4 text-c1 font-bold px-2 focus-visible:rounded focus-visible:outline-none focus-visible:border-2 focus-visible:border-c2"
+                    type="password" placeholder="Enter your password" [(ngModel)]='signupModel.password' required
+                    minlength="8" email #userPassword="ngModel">
+                <div *ngIf="userPassword.touched && userPassword.invalid" class="mt-2">
+                    <p *ngIf="userPassword.errors?.['required']" class="text-red-500 text-start text-sm font-bold">Password
+                        is required.</p>
+                </div>
+            </div>
+
+            <div class="mt-2">
+                <button class="transition-all ease-in-out duration-500 h-8 w-full bg-c2 rounded-sm hover:bg-c3"
+                    [disabled]="loginForm.invalid">Create an account</button>
+            </div>
+
+        </form>
+
+        <hr class="mx-auto my-3 border w-full">
+
+        <button class="text-sm" (click)="onAuthStateChanged('login')">Already have an account? Login here!</button>
+        <button class="text-sm" (click)="onAuthStateChanged('passwordReset')">Forgot password?</button>
+    </div>
+</div>

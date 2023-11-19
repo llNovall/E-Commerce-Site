@@ -8,4 +8,10 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   isLoggedIn: boolean = false;
   loggedUserName: string = 'TestUser';
+
+  isLoginPageShowed: boolean = false;
+
+  showLoginPage(value : boolean): void{
+    this.isLoginPageShowed = value;
+  }
 }
