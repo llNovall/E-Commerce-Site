@@ -23,6 +23,7 @@ export class SinglePageComponent {
 
   onClickClose(){
     this.showPage = false;
+    this.currentState = UserAuthenticationState.login;
     this.onCloseEmit.emit();
   }
 }

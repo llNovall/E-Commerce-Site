@@ -6,9 +6,9 @@
     
             <div class="h-2 bg-c3 border-c1">
                 <div class="flex justify-end relative">
-                    <button class="absolute -right-4 -top-4" (click) = 'onClickClose()'>
-                        <span class="text-c4 text-4xl font-bold material-symbols-outlined">
-                            cancel
+                    <button class="absolute right-2  top-2" (click) = 'onClickClose()'>
+                        <span class="text-c4 text-2xl font-bold material-symbols-outlined">
+                            disabled_by_default
                         </span>
                     </button>
                 </div>
@@ -19,11 +19,11 @@
             </ng-container>
     
             <ng-container *ngIf="currentState == 'passwordReset'">
-                <account-layouts-login></account-layouts-login>
+                <account-layouts-reset-password (authStateEmit) = "changeAccountState($event)"></account-layouts-reset-password>
             </ng-container>
     
             <ng-container *ngIf="currentState == 'signup'">
-                <account-layout-sign-up></account-layout-sign-up>
+                <account-layout-sign-up (authStateEmit) = "changeAccountState($event)"></account-layout-sign-up>
             </ng-container>
     
         </div>
