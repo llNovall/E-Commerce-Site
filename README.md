@@ -1,5 +1,7 @@
 # ECommerceSite
 
+The site is current hosted [here](https://mango-meadow-0b465d803.4.azurestaticapps.net/location). It's still pretty much a work in progress project.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.4.
 
 ## Development server
