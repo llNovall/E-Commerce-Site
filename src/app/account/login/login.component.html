@@ -31,14 +31,14 @@
 
             <div class="mt-2">
                 <button
-                    class="transition-all ease-in-out duration-500 h-8 w-full bg-c2 rounded-sm hover:bg-c3" [disabled]="loginForm.invalid">Sign-In</button>
+                    class="transition-all ease-in-out duration-500 h-8 w-full bg-c2 rounded-sm hover:bg-c3" [disabled]="loginForm.invalid">Send</button>
             </div>
 
         </form>
 
         <hr class="mx-auto my-3 border w-full">
 
-        <button class="text-sm" (click) = "onAuthStateChanged('signup')">Don't have an account? Create one here!</button>
-        <button class="text-sm" (click) = "onAuthStateChanged('passwordReset')">Forgot password?</button>
+        <p>Don't have an account? <button class="text-sm font-bold" (click)="onAuthStateChanged('signup')"> Create one here!</button></p>
+        <p>Forgot password? <button class="text-sm font-bold" (click)="onAuthStateChanged('passwordReset')"> Reset here!</button></p>
     </div>
 </div>

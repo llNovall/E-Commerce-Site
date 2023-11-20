@@ -56,7 +56,8 @@
 
         <hr class="mx-auto my-3 border w-full">
 
-        <button class="text-sm" (click)="onAuthStateChanged('login')">Already have an account? Login here!</button>
-        <button class="text-sm" (click)="onAuthStateChanged('passwordReset')">Forgot password?</button>
+        <p>Already have an account? <button class="text-sm font-bold" (click)="onAuthStateChanged('login')"> Login here!</button></p>
+        <p>Forgot password? <button class="text-sm font-bold" (click)="onAuthStateChanged('passwordReset')"> Reset here!</button></p>
+
     </div>
 </div>
