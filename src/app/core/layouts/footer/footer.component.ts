@@ -11,11 +11,10 @@ export class FooterComponent {
   copyrightDate: Date;
   observer: ResizeObserver | undefined;
   isPositionFixed: boolean = false;
-  routerNavigationEnd$ : Subscription;
+  routerNavigationEnd$: Subscription;
 
   constructor(private router: Router) {
     this.copyrightDate = new Date();
-
     this.routerNavigationEnd$ = router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
@@ -33,7 +32,7 @@ export class FooterComponent {
 
   ngOnDestroy(): void {
     if (this.observer) this.observer.unobserve(document.body);
-    if(this.routerNavigationEnd$) this.routerNavigationEnd$.unsubscribe();
+    if (this.routerNavigationEnd$) this.routerNavigationEnd$.unsubscribe();
   }
 
   @HostListener('window:resize', ['$event'])
