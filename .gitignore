@@ -1,42 +1,42 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+[Ff]rontend/dist
+[Ff]rontend/tmp
+[Ff]rontend/out-tsc
+[Ff]rontend/bazel-out
 
 # Node
-/node_modules
-npm-debug.log
-yarn-error.log
+[Ff]rontend/node_modules
+[Ff]rontend/npm-debug.log
+[Ff]rontend/yarn-error.log
 
 # IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+[Ff]rontend/.idea/
+[Ff]rontend/.project
+[Ff]rontend/.classpath
+[Ff]rontend/.c9/
+[Ff]rontend/*.launch
+[Ff]rontend/.settings/
+[Ff]rontend/*.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+[Ff]rontend/.vscode/*
+[Ff]rontend/!.vscode/settings.json
+[Ff]rontend/!.vscode/tasks.json
+[Ff]rontend/!.vscode/launch.json
+[Ff]rontend/!.vscode/extensions.json
+[Ff]rontend/.history/*
 
 # Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
+[Ff]rontend/.angular/cache
+[Ff]rontend/.sass-cache/
+[Ff]rontend/connect.lock
+[Ff]rontend/coverage
+[Ff]rontend/libpeerconnection.log
+[Ff]rontend/testem.log
+[Ff]rontend/typings
 
 # System files
-.DS_Store
-Thumbs.db
+[Ff]rontend/.DS_Store
+[Ff]rontend/Thumbs.db

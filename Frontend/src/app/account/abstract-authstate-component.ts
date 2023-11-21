@@ -26,5 +26,6 @@ export abstract class AbstractAuthStateComponent {
     }
 
     this.authStateEmit.emit(authState);
+    console.log(authState);
   }
 }
