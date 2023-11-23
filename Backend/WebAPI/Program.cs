@@ -1,4 +1,6 @@
+using Domain.Context;
 using Domain.Entities.Account;
+using Domain.Repositories.Shop;
 using EFAccess.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -7,6 +9,8 @@ using Microsoft.Extensions.Logging.AzureAppServices;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MongoDbAccess.Configs;
+using MongoDbAccess.Context;
+using MongoDbAccess.Repositories;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System.Security.Claims;
 using System.Text;
@@ -115,6 +119,9 @@ builder.Services.AddSwaggerGen(c =>
         Version = "v1"
     });
 });
+
+builder.Services.AddTransient<IMongoDbContext, MongoDbContext>();
+builder.Services.AddTransient<IProductRepository, ProductRepository>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
