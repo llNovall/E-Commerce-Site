@@ -29,6 +29,19 @@ namespace MongoDbAccess.Repositories
             }
         }
 
+        public async Task<bool> CreateRange(List<T> entities)
+        {
+            try
+            {
+                await _collection.InsertManyAsync(entities, cancellationToken: CancellationToken.None);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public async Task<bool> Delete(string id)
         {
             try

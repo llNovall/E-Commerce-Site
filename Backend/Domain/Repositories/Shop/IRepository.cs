@@ -10,6 +10,8 @@ namespace Domain.Repositories.Shop
 
         Task<bool> Create(T entity);
 
+        Task<bool> CreateRange(List<T> entities);
+
         Task<bool> Update(T entity);
 
         Task<bool> Delete(string id);
