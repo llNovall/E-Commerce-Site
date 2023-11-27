@@ -10,11 +10,14 @@ import { ShopService } from 'src/app/shop/services/shop.service';
   styleUrls: ['./shop-page.component.scss'],
 })
 export class ShopPageComponent implements OnInit {
-
   products: Product[] = [];
   filterCheckboxes: FilterCheckbox[] = [];
   filteredProducts: Product[] = [];
-  sortBy: string = "lprice";
+  paginatedProducts: Product[] = [];
+  sortBy: string = 'lprice';
+  paginationNumCurrent: number = 1;
+  paginationOptions: number[] = [];
+  displayNumProductsPerPage: number = 1;
 
   constructor(private shopService: ShopService) {}
 
@@ -32,30 +35,63 @@ export class ShopPageComponent implements OnInit {
         this.updateFilteredProducts();
       },
       error: (error) => {
-        console.log(error);
+        console.log("Failed to connect to API");
       },
     });
   }
 
-  onFilterChanged(filterOption : FilterCheckbox, isChecked : boolean): void {
+  onPaginationChanged(page: number): void {
+    this.paginationNumCurrent = page;
+    this.updateFilteredProducts();
+  }
+  onFilterChanged(filterOption: FilterCheckbox, isChecked: boolean): void {
     filterOption.isChecked = isChecked;
     this.updateFilteredProducts();
   }
 
-  onSortChanged(value : string){
+  onSortChanged(value: string) {
     this.sortBy = value;
     this.updateFilteredProducts();
   }
 
-  updateFilteredProducts() : void{
-    let checkedTypes : string[] = this.filterCheckboxes.filter(c=> c.isChecked === true).map(c=> c.optionName);
+  updateFilteredProducts(): void {
+    let checkedTypes: string[] = this.filterCheckboxes
+      .filter((c) => c.isChecked == true)
+      .map((c) => c.optionName);
 
-    if(checkedTypes.length > 0)
-      this.filteredProducts = this.products.filter(c=> checkedTypes.includes(c.productType));
+    if (checkedTypes.length > 0)
+      this.filteredProducts = this.products.filter((c) =>
+        checkedTypes.includes(c.productType)
+      );
+    else this.filteredProducts = this.products;
 
-    if(this.sortBy === 'lprice')
-      this.filteredProducts = this.products.sort((a ,b) =>  (a.price < b.price ? -1 : 1));
-    else if(this.sortBy === 'hprice')
-      this.filteredProducts = this.products.sort((a ,b) =>  (a.price > b.price ? -1 : 1));
+    if (this.sortBy === 'lprice')
+      this.filteredProducts = this.filteredProducts.sort((a, b) =>
+        a.price < b.price ? -1 : 1
+      );
+    else if (this.sortBy === 'hprice')
+      this.filteredProducts = this.filteredProducts.sort((a, b) =>
+        a.price > b.price ? -1 : 1
+      );
+
+    this.displayNumProductsPerPage = 10;
+
+    let p: number = Math.round(
+      this.filteredProducts.length / this.displayNumProductsPerPage
+    );
+    this.paginationOptions = Array(Math.floor(p))
+      .fill(0)
+      .map((x, i) => i + 1);
+
+    let paginationStart =
+      (this.paginationNumCurrent - 1) * this.displayNumProductsPerPage;
+    paginationStart < 0
+      ? (paginationStart = 0)
+      : (paginationStart = paginationStart);
+    let paginationEnd = paginationStart + this.displayNumProductsPerPage;
+    this.paginatedProducts = this.filteredProducts.slice(
+      paginationStart,
+      paginationEnd
+    );
   }
 }

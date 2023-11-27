@@ -27,20 +27,24 @@
                         <p class="text-c1 font-semibold text-xl">Filter By</p>
 
                         <div class="flex flex-row divide-x divide-c1">
-                            
+
                             <div *ngFor="let item of filterCheckboxes" class=" space-x-4 px-4 flex flex-row">
-                                <label for="{{item.optionName}}" class="text-c1 font-semibold self-center">{{item.optionName}}</label>
-                                <input id="{{item.optionName}}" name="checkbox1" type="checkbox" class="self-center" [checked]="item.isChecked" (change)="onFilterChanged(item, filterOption.checked)" #filterOption>
+                                <label for="{{item.optionName}}"
+                                    class="text-c1 font-semibold self-center">{{item.optionName}}</label>
+                                <input id="{{item.optionName}}" name="checkbox1" type="checkbox" class="self-center"
+                                    [checked]="item.isChecked" (change)="onFilterChanged(item, filterOption.checked)"
+                                    #filterOption>
                             </div>
-                            
+
                         </div>
                     </div>
 
                     <div>
                         <div class="space-x-2 ">
                             <label for="sort" class="text-c1 font-semibold text-xl">Sort By</label>
-                            <select id="sort" name="sort" class="font-semibold border border-c1" (change)="onSortChanged(sort.value)" #sort>
-                                <option value="lprice" class="text-c1 font-semibold" >Lowest Price</option>
+                            <select id="sort" name="sort" class="font-semibold border border-c1"
+                                (change)="onSortChanged(sort.value)" #sort>
+                                <option value="lprice" class="text-c1 font-semibold">Lowest Price</option>
                                 <option value="hprice" class=" text-c1 font-semibold ">Highest Price</option>
                             </select>
                         </div>
@@ -56,26 +60,24 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
-                <ng-container *ngFor="let product of filteredProducts">
+                <ng-container *ngFor="let product of paginatedProducts">
                     <shop-layouts-product class="mt-4 md:mt-0" [product]="product"></shop-layouts-product>
                 </ng-container>
             </div>
 
-            <div *ngIf="filteredProducts.length > 10" id="pagination" class="flex flex-row justify-center space-x-2 mt-6">
+            <div id="pagination" class="flex flex-row justify-center space-x-2 mt-6">
 
-                <button
-                    class="transition-all ease-in-out duration-500 border-2 border-c2 bg-c1 text-c4 w-10 h-10 hover:bg-c2">1</button>
-                <button
-                    class="transition-all ease-in-out duration-500 border-2 border-c2 bg-c1 text-c4 w-10 h-10 hover:bg-c2">2</button>
-                <button class="transition-all ease-in-out duration-500 border-2 border-c2 bg-c3 text-c4 w-10 h-10">3</button>
-                <button
-                    class="transition-all ease-in-out duration-500 border-2 border-c2 bg-c1 text-c4 w-10 h-10 hover:bg-c2">4</button>
-                <button
-                    class="transition-all ease-in-out duration-500 border-2 border-c2 bg-c1 text-c4 w-10 h-10 hover:bg-c2">5</button>
-                <button
-                    class="transition-all ease-in-out duration-500 border-2 border-c2 bg-c1 text-c4 w-10 h-10 hover:bg-c2">6</button>
-                <button
-                    class="transition-all ease-in-out duration-500 border-2 border-c2 bg-c1 text-c4 w-10 h-10 hover:bg-c2">7</button>
+                <ng-container *ngFor="let item of paginationOptions">
+
+                    <button (click) = "onPaginationChanged(item)" *ngIf="item !== paginationNumCurrent"
+                        class="transition-all ease-in-out duration-500 border-2 border-c2 bg-c1 text-c4 w-10 h-10 hover:bg-c2">{{item}}
+                    </button>
+
+                    <button (click) = "onPaginationChanged(item)" *ngIf="item === paginationNumCurrent"
+                        class="transition-all ease-in-out duration-500 border-2 border-c2 bg-c3 text-c4 w-10 h-10">{{item}}
+                    </button>
+                </ng-container>
+
             </div>
 
         </div>
