@@ -15,7 +15,7 @@ export class ProductComponent {
       productDescription: '',
       productName: '',
       productType: '',
-      quanity : 1
+      quantity : 1
     }
   }
 }

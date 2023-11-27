@@ -9,9 +9,10 @@ import { AboutUsComponent } from './core/pages/about-us/about-us.component';
 import { LocationComponent } from './core/pages/location/location.component';
 import { ShopPageComponent } from './core/pages/shop-page/shop-page.component';
 import { ShopModule } from './shop/shop.module';
+import { ProductPageComponent } from './core/pages/product-page/product-page.component';
 
 @NgModule({
-  declarations: [HomepageComponent, HeaderComponent, FooterComponent, AboutUsComponent, LocationComponent, ShopPageComponent],
+  declarations: [HomepageComponent, HeaderComponent, FooterComponent, AboutUsComponent, LocationComponent, ShopPageComponent, ProductPageComponent],
   imports: [RouterModule, CommonModule, AccountModule, ShopModule],
   exports: [HomepageComponent, HeaderComponent, FooterComponent],
 })

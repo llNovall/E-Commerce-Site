@@ -2,6 +2,6 @@ export interface Product {
     productName : string;
     productDescription : string;
     productType : string;
-    quanity : number;
+    quantity : number;
     price : number;
 }
