@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'shop-layouts-product',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent {
+@Input({required : true}) product: Product
 
+  constructor(){
+    this.product = {
+      price : 0.00,
+      productDescription: '',
+      productName: '',
+      productType: '',
+      quanity : 1
+    }
+  }
 }
