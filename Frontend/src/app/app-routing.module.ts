@@ -11,7 +11,8 @@ const routes: Routes = [
   {path: 'about-us', component: AboutUsComponent},
   {path: 'location', component: LocationComponent},
   {path: 'shop', component: ShopPageComponent},
-  {path: 'product', component: ProductPageComponent},
+  {path: 'shop/:filter', component: ShopPageComponent},
+  {path: 'product/:id', component: ProductPageComponent},
   {path: '**', component: HomepageComponent}
 ];
 

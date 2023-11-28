@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductComponent } from './layouts/product/product.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -10,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProductComponent
   ],
   imports: [
-    CommonModule, HttpClientModule, FormsModule, ReactiveFormsModule
+    CommonModule, HttpClientModule, FormsModule, ReactiveFormsModule, RouterModule
   ],
   exports:[
     ProductComponent

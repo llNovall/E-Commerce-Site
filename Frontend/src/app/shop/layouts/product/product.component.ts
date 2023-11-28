@@ -11,6 +11,7 @@ export class ProductComponent {
 
   constructor(){
     this.product = {
+      id : '',
       price : 0.00,
       productDescription: '',
       productName: '',

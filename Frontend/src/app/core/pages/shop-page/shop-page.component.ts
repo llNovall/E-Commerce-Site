@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { FilterCheckbox } from 'src/app/shop/models/filter';
 import { Product } from 'src/app/shop/models/product';
 import { ShopService } from 'src/app/shop/services/shop.service';
@@ -19,9 +20,12 @@ export class ShopPageComponent implements OnInit {
   paginationOptions: number[] = [];
   displayNumProductsPerPage: number = 1;
 
-  constructor(private shopService: ShopService) {}
+  constructor(private shopService: ShopService, private activatedRoute : ActivatedRoute) {}
 
   ngOnInit(): void {
+
+    let checkTypeParam = this.activatedRoute.snapshot.paramMap.get('filter');
+
     this.shopService.getProducts().subscribe({
       next: (products) => {
         this.products = products;
@@ -29,7 +33,7 @@ export class ShopPageComponent implements OnInit {
           .map((c) => c.productType)
           .filter((value, index, self) => self.indexOf(value) === index)
           .forEach((c) =>
-            this.filterCheckboxes.push({ optionName: c, isChecked: false })
+            this.filterCheckboxes.push({ optionName: c, isChecked: checkTypeParam? c == checkTypeParam : false })
           );
 
         this.updateFilteredProducts();

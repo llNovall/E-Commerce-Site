@@ -1,11 +1,11 @@
-<a href="#" class="">
-    <div class="transition-all ease-linear duration-200 bg-c3 hover:border-c1 hover:border-2 ">
+<a [routerLink]="['/product', product.id]" routerLinkActive="router-link-active" class="">
+    <div class="transition-all ease-linear duration-200 bg-c3 hover:border-c1 hover:border shadow-lg shadow-c3">
 
         <div class="flex flex-col">
             <img src="{{product.productImgUrl}}" class="">
             <div class="h-1 bg-c2"></div>
             <div class="flex flex-row justify-between px-2 mt-2">
-                
+
                 <p class="text-c4 self-center text-xl">${{product.price}}</p>
                 <p class="flex">
                     <span *ngIf="product.quantity > 0" class="text-green-400 self-center material-symbols-outlined">
@@ -16,7 +16,7 @@
                     </span>
                 </p>
             </div>
-    
+
             <div class="px-2 mt-2 bg-c1 py-3">
                 <p class="text-c4 text-2xl">{{product.productName}}</p>
             </div>
@@ -24,22 +24,22 @@
             <div class="px-2 py-0 mt-2">
                 <p class="text-c4 text-xs text-end">{{product.productType}}</p>
             </div>
-    
+
         </div>
-    
+
     </div>
     <div class="flex justify-end relative">
         <button class="z-10 bg-c1 w-10 flex justify-center py-2 peer">
             <span class="self-center material-symbols-outlined text-c4">
                 shopping_cart
             </span>
-    
+
         </button>
-    
+
         <p
             class="z-0 bg-c2 text-center px-2 border-y-2 invisible peer-hover:visible peer-hover:border-s-2 border-c1 transition-all 
             ease-in-out duration-700 absolute peer-hover:right-10 text-c4 top-2 text-lg w-0 overflow-clip h-7 peer-hover:overflow-clip peer-hover:w-32">
             Add to cart</p>
-    
+
     </div>
 </a>
