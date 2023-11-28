@@ -104,16 +104,6 @@ namespace WebAPI.Utils.Extensions
 
                     new Product()
                     {
-                        ProductName = "Tea",
-                        ProductDescription = "A selection of herbal, green, and black teas available for those looking for a caffeine-free option.",
-                        ProductType = "Hot Beverage",
-                        Price = 3.49,
-                        ProductImgUrl = "assets/images/shop/tea.jpg",
-                        Quantity = 20
-                    },
-
-                    new Product()
-                    {
                         ProductName = "Matcha Latte",
                         ProductDescription = "A Japanese-inspired drink made with powdered green tea, steamed milk, and a hint of sweetness.",
                         ProductType = "Hot Beverage",
@@ -179,16 +169,6 @@ namespace WebAPI.Utils.Extensions
                         ProductType = "Hot Beverage",
                         Price = 3.49,
                         ProductImgUrl = "assets/images/shop/hotmilk.jpg",
-                        Quantity = 20
-                    },
-
-                    new Product()
-                    {
-                        ProductName = "Tea",
-                        ProductDescription = "A selection of herbal, green, and black teas available for those looking for a caffeine-free option.",
-                        ProductType = "Hot Beverage",
-                        Price = 3.49,
-                        ProductImgUrl = "assets/images/shop/tea.jpg",
                         Quantity = 20
                     },
 
