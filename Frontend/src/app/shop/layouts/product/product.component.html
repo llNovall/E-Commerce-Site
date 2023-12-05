@@ -28,18 +28,18 @@
         </div>
 
     </div>
-    <div class="flex justify-end relative">
-        <button class="z-10 bg-c1 w-10 flex justify-center py-2 peer">
-            <span class="self-center material-symbols-outlined text-c4">
-                shopping_cart
-            </span>
-
-        </button>
-
-        <p
-            class="z-0 bg-c2 text-center px-2 border-y-2 invisible peer-hover:visible peer-hover:border-s-2 border-c1 transition-all 
-            ease-in-out duration-700 absolute peer-hover:right-10 text-c4 top-2 text-lg w-0 overflow-clip h-7 peer-hover:overflow-clip peer-hover:w-32">
-            Add to cart</p>
-
-    </div>
+   
 </a>
+<div class="flex justify-end relative">
+    <button class="z-10 bg-c1 w-10 flex justify-center py-2 peer" (click)="addToCart()">
+        <span class="self-center material-symbols-outlined text-c4">
+            shopping_cart
+        </span>
+
+    </button>
+
+    <p
+        class="z-0 bg-c2 text-center px-2 border-y-2 invisible peer-hover:visible peer-hover:border-s-2 border-c1 transition-all 
+        ease-in-out duration-700 absolute peer-hover:right-10 text-c4 top-2 text-lg w-0 overflow-clip h-7 peer-hover:overflow-clip peer-hover:w-32">
+        Add to cart</p>
+</div>
