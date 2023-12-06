@@ -12,7 +12,7 @@ export class CartSideviewComponent implements OnInit {
   cartTotalPrice: number = 0;
   isLoggedIn: boolean = false;
 
-  @Input() isSideViewCardDisplayed: boolean = true;
+  @Input() isSideViewCardDisplayed: boolean = false;
   @Output() isSideViewCardDisplayedEmit: EventEmitter<boolean> =
     new EventEmitter<boolean>();
 
