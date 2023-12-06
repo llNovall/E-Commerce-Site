@@ -17,7 +17,6 @@ export class HeaderComponent {
 
   showCart(value : boolean): void{
     this.isCartShowed = value;
-    console.log(this.isCartShowed);
   }
   toggleCart(): void{
     this.isCartShowed = !this.isCartShowed;

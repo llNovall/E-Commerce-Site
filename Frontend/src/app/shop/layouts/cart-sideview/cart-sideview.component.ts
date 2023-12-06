@@ -12,7 +12,7 @@ export class CartSideviewComponent implements OnInit {
   cartTotalPrice: number = 0;
   isLoggedIn: boolean = false;
 
-  @Input() isSideViewCardDisplayed: boolean = true;
+  @Input() isSideViewCardDisplayed: boolean = false;
   @Output() isSideViewCardDisplayedEmit: EventEmitter<boolean> =
     new EventEmitter<boolean>();
 
@@ -24,7 +24,6 @@ export class CartSideviewComponent implements OnInit {
 
     this.cartService.getTotalPrice().subscribe((totalPrice) => {
       this.cartTotalPrice = totalPrice;
-      console.log("SideView", this.cartTotalPrice);
     });
   }
   toggleDisplay(): void {
