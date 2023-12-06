@@ -6,6 +6,13 @@
 [Ff]rontend/out-tsc
 [Ff]rontend/bazel-out
 
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
 # Node
 [Ff]rontend/node_modules
 [Ff]rontend/npm-debug.log
@@ -27,6 +34,11 @@
 [Ff]rontend/!.vscode/launch.json
 [Ff]rontend/!.vscode/extensions.json
 [Ff]rontend/.history/*
+
+# Visual Studio 2022
+[Bb]ackend/.vs/*
+[Bb]ackend/*/[Oo]bj/*
+[Bb]ackend/*/[Bb]in/*
 
 # Miscellaneous
 [Ff]rontend/.angular/cache
