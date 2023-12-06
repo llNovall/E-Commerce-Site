@@ -24,7 +24,6 @@ export class CartSideviewComponent implements OnInit {
 
     this.cartService.getTotalPrice().subscribe((totalPrice) => {
       this.cartTotalPrice = totalPrice;
-      console.log("SideView", this.cartTotalPrice);
     });
   }
   toggleDisplay(): void {
