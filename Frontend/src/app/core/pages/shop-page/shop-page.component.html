@@ -1,0 +1,86 @@
+<div class="bg-slate-50 pt-6">
+
+    <div class="container mx-auto">
+        <h3 class="text-center text-6xl font-semibold text-c1">Shop</h3>
+
+        <p class="italic text-c1 font-semibold text-center">With our meticulous selection of ethically sourced beans and
+            expertly crafted brewing techniques, we
+            strive to deliver a stellar cup of coffee every time. Indulge in our variety of handcrafted beverages, from
+            rich
+            and
+            velvety lattes to invigorating cold brews. </p>
+
+        <div class="md:min-h-screen py-4">
+            <div id="filterOptions" class="flex- flex-row mb-4">
+                <!--
+                <div>
+                    <button
+                        class="transition-all ease-in-out duration-500 hover:bg-c2 rounded-sm border-2 border-c2 bg-c1 text-c4   w-12 h-12">
+                        <span class="self-center material-symbols-outlined text-4xl">
+                            tune
+                        </span>
+                    </button>
+                </div>
+-->
+                <div class="mt-2 flex flex-row justify-between">
+                    <div class="flex flex-row">
+                        <p class="text-c1 font-semibold text-xl">Filter By</p>
+
+                        <div class="flex flex-row divide-x divide-c1">
+
+                            <div *ngFor="let item of filterCheckboxes" class=" space-x-4 px-4 flex flex-row">
+                                <label for="{{item.optionName}}"
+                                    class="text-c1 font-semibold self-center">{{item.optionName}}</label>
+                                <input id="{{item.optionName}}" name="checkbox1" type="checkbox" class="self-center"
+                                    [checked]="item.isChecked" (change)="onFilterChanged(item, filterOption.checked)"
+                                    #filterOption>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="space-x-2 ">
+                            <label for="sort" class="text-c1 font-semibold text-xl">Sort By</label>
+                            <select id="sort" name="sort" class="font-semibold border border-c1"
+                                (change)="onSortChanged(sort.value)" #sort>
+                                <option value="lprice" class="text-c1 font-semibold">Lowest Price</option>
+                                <option value="hprice" class=" text-c1 font-semibold ">Highest Price</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="flex flex-row justify-between border-orange-950 border-b">
+                <p class="text-c1 font-semibold text-xl ">Products ({{filteredProducts.length}})</p>
+
+
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+                <ng-container *ngFor="let product of paginatedProducts">
+                    <shop-layouts-product class="mt-4 md:mt-0" [product]="product"></shop-layouts-product>
+                </ng-container>
+            </div>
+
+            <div id="pagination" class="flex flex-row justify-center space-x-2 mt-6">
+
+                <ng-container *ngFor="let item of paginationOptions">
+
+                    <button (click) = "onPaginationChanged(item)" *ngIf="item !== paginationNumCurrent"
+                        class="transition-all ease-in-out duration-500 border-2 border-c2 bg-c1 text-c4 w-10 h-10 hover:bg-c2">{{item}}
+                    </button>
+
+                    <button (click) = "onPaginationChanged(item)" *ngIf="item === paginationNumCurrent"
+                        class="transition-all ease-in-out duration-500 border-2 border-c2 bg-c3 text-c4 w-10 h-10">{{item}}
+                    </button>
+                </ng-container>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

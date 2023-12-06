@@ -1,0 +1,42 @@
+<div id="cart-sideview"
+    class="transition-all right-0 ease-in-out duration-1000 fixed top-0 md:inset-y-10 w-full h-full md:h-[850px] 
+    md:w-5/6 lg:w-3/6 xl:w-2/6 bg-slate-800 border-s-2 border-y-2 border-slate-500 z-50 text-c4 px-4" 
+    [ngClass]="{'md:right-0': isSideViewCardDisplayed, '-right-full':!isSideViewCardDisplayed}">
+
+    <div class="relative mt-4">
+        <div class="absolute">
+            <button (click)="onClickClose()">
+                <span class="text-5xl material-symbols-outlined">
+                    close
+                </span>
+            </button>
+        </div>
+        <div class="text-center pt-2 font-bold text-4xl border-b-2 border-b-c4">
+            Cart
+        </div>
+    </div>
+
+    <div class="mt-2">
+        <div class="h-[550px] overflow-y-auto">
+
+            <p *ngIf="cartProducts.length == 0">No products in the cart.</p>
+            <ng-container *ngFor="let cartProduct of cartProducts">
+                <div class="mt-2">
+                    <shop-layouts-cart-sideview-product [cartProduct]="cartProduct" ></shop-layouts-cart-sideview-product>
+                </div>
+            </ng-container>
+
+        </div>
+    </div>
+
+    <div class="flex justify-between mt-12 border-t-2 border-c4 py-4">
+        <p>Total</p>
+        <p>$ {{cartTotalPrice | number : '1.2-2'}}</p>
+    </div>
+
+    <div class="text-center w-full">
+        <p *ngIf="!isLoggedIn">You have to be logged in to make a purchase.</p>
+        <a *ngIf="isLoggedIn" href="#"
+            class="transition-colors ease-in-out duration-500 border block border-c4 w-full py-2 hover:bg-slate-500">Checkout</a>
+    </div>
+</div>
