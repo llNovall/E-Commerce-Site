@@ -15,7 +15,6 @@ export class CartService {
 
   constructor() {
     let cartStorage = sessionStorage.getItem('cart');
-    console.log(cartStorage);
     if (cartStorage) {
       let cartProducts: CartProduct[] = JSON.parse(cartStorage);
       cartProducts.forEach((c) => {

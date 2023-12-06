@@ -13,9 +13,7 @@ export class SinglePageComponent {
 
   currentState : UserAuthenticationState = UserAuthenticationState.login;
 
-  constructor(){
-    console.log(this.currentState);
-  }
+  constructor(){}
 
   changeAccountState(state : UserAuthenticationState) {
     this.currentState = state;
