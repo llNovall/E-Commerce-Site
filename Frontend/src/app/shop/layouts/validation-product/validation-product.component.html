@@ -1,0 +1,39 @@
+<div class="w-full bg-c1 text-c4 me-10 py-2 px-2" [ngClass]="{'border-c3 border' : isValidationSuccessful(), 'border-red-700 border-4 animate-pulse duration-1000' : !isValidationSuccessful()}">
+
+    <div class="flex flex-row items-center space-x-2 relative justify-between">
+        <img src="{{validationCartProduct?.cartProduct?.product?.productImgUrl}}" class="h-40">
+        <div class="w-3/6 text-center">
+            <p class="text-xl font-medium border-b border-white pb-2">{{validationCartProduct?.cartProduct?.product?.productName}}</p>
+            
+            <p class="text-xl font-medium pt-2">${{totalPrice | number : '1.2-2'}}</p>
+        </div>
+        
+
+        <div class="flex flex-row space-x-4 justify-center">
+            <button (click)="onPressAdd()">
+                <span class="material-symbols-outlined">
+                    add
+                </span>
+            </button>
+            <p class="text-center">{{validationCartProduct?.cartProduct?.quantity}}</p>
+            <button (click)="onPressRemove()">
+                <span class="material-symbols-outlined">
+                    remove
+                </span>
+            </button>
+        </div>
+        <div class="pe-4">
+            <button (click)="onPressRemoveCompletely()">
+                <span class="material-symbols-outlined">
+                    close
+                </span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="validationCartProduct">
+    <div *ngIf="validationCartProduct.product.quantity < validationCartProduct.cartProduct.quantity">
+        <p class="text-red-600 text-center font-bold">Currently only {{validationCartProduct.product.quantity}} {{validationCartProduct.product.productName}} available to purchase</p>
+    </div>
+</ng-container>

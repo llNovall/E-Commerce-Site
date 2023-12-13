@@ -1,0 +1,24 @@
+<div class="my-2">
+    <p class="text-xl font-bold text-c1">{{cartProducts.length}} products in cart</p>
+    <ng-container *ngFor="let cartProduct of productValidations">
+        <div class="mt-2">
+            <shop-layouts-validation-product [validationCartProduct]="cartProduct" ></shop-layouts-validation-product>
+        </div>
+    </ng-container>
+
+    <div class="flex flex-row justify-between w-full bg-c1 py-2 mt-2 text-c4 text-xl px-2">
+        <p>Total</p>
+        <p>${{cartTotalPrice | number : '1.2-2'}}</p>
+    </div>
+
+    <div *ngIf="cartProducts.length > 0" class="mt-2 flex justify-center">
+        <button class="w-1/4 py-2 border-c1 rounded text-c4 text-xl flex flex-row justify-center  duration-500" [ngClass]="{'bg-c1': isValidating, 'bg-c2 hover:bg-c3' : !isValidating}" (click)="validateCart()" [disabled]="isValidating">
+            <p *ngIf="!isValidating">Validate</p>
+            <p *ngIf="isValidating">Validating</p> 
+            <span *ngIf="isValidating" class="ms-2 material-symbols-outlined animate-spin">
+            progress_activity
+            </span>
+        </button>
+    </div>
+    
+</div>

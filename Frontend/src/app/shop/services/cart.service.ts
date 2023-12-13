@@ -1,7 +1,9 @@
 import { Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, lastValueFrom, map, take } from 'rxjs';
 import { CartProduct } from '../models/cart-product';
 import { Product } from '../models/product';
+import { ShopService } from './shop.service';
+import { ValidationCartProduct } from '../models/validation-cart-product';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +15,7 @@ export class CartService {
   private cartTotalPrice: number = 59;
   private cartTotalPrice$ = new BehaviorSubject<number>(this.cartTotalPrice);
 
-  constructor() {
+  constructor(private shopService: ShopService) {
     let cartStorage = sessionStorage.getItem('cart');
     if (cartStorage) {
       let cartProducts: CartProduct[] = JSON.parse(cartStorage);
@@ -90,5 +92,14 @@ export class CartService {
 
     this.cartTotalPrice = price;
     this.cartTotalPrice$.next(this.cartTotalPrice);
+  }
+
+  validateProduct(cartProduct: CartProduct): Observable<ValidationCartProduct> {
+    return this.shopService.getProduct(cartProduct.product.id).pipe(
+      map((product =>{
+        let validateProduct : ValidationCartProduct = {product : product, isValidationSuccessful : product.quantity >= cartProduct.quantity, cartProduct : cartProduct};
+        return validateProduct;
+      })
+    ));
   }
 }

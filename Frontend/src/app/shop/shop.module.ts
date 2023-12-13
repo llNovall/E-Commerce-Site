@@ -6,19 +6,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CartSideviewComponent } from './layouts/cart-sideview/cart-sideview.component';
 import { CartSideviewProductComponent } from './layouts/cart-sideview-product/cart-sideview-product.component';
+import { ValidationComponent } from './layouts/validation/validation.component';
+import { ValidationProductComponent } from './layouts/validation-product/validation-product.component';
 
 
 @NgModule({
   declarations: [
     ProductComponent,
     CartSideviewComponent,
-    CartSideviewProductComponent
+    CartSideviewProductComponent,
+    ValidationComponent,
+    ValidationProductComponent
   ],
   imports: [
     CommonModule, HttpClientModule, FormsModule, ReactiveFormsModule, RouterModule
   ],
   exports:[
-    ProductComponent, CartSideviewComponent
+    ProductComponent, CartSideviewComponent, ValidationComponent
   ]
 })
 export class ShopModule { }
