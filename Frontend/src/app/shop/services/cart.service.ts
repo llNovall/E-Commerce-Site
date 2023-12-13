@@ -65,6 +65,22 @@ export class CartService {
     }
   }
 
+  removeProductCompletely(product: Product): void {
+    let cartProduct: CartProduct | undefined;
+    cartProduct = this.cartProducts.find((c) => c.product.id === product.id);
+
+    if (cartProduct) {
+      let index = this.cartProducts.indexOf(cartProduct);
+
+      if (index >= 0) {
+        this.cartProducts.splice(index, 1);
+      }
+
+      sessionStorage.setItem('cart', JSON.stringify(this.cartProducts));
+      this.calculatePrice();
+    }
+  }
+
   calculatePrice(): void {
     let price: number = 0;
     this.cartProducts.forEach(

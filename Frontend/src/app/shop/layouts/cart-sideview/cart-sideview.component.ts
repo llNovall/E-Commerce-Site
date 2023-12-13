@@ -10,7 +10,7 @@ import { CartService } from '../../services/cart.service';
 export class CartSideviewComponent implements OnInit {
   cartProducts: CartProduct[] = [];
   cartTotalPrice: number = 0;
-  isLoggedIn: boolean = false;
+  isLoggedIn: boolean = true;
 
   @Input() isSideViewCardDisplayed: boolean = false;
   @Output() isSideViewCardDisplayedEmit: EventEmitter<boolean> =

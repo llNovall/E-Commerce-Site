@@ -36,7 +36,7 @@
 
     <div class="text-center w-full">
         <p *ngIf="!isLoggedIn">You have to be logged in to make a purchase.</p>
-        <a *ngIf="isLoggedIn" href="#"
+        <a *ngIf="isLoggedIn" [routerLink]="'/checkout'"
             class="transition-colors ease-in-out duration-500 border block border-c4 w-full py-2 hover:bg-slate-500">Checkout</a>
     </div>
 </div>
