@@ -14,7 +14,7 @@ export class ValidationComponent {
   cartTotalPrice: number = 0;
   isValidating: boolean = false;
   isValidationSuccessful: boolean = false;
-  productValidations : ValidationCartProduct[] = [];
+  productValidations: ValidationCartProduct[] = [];
 
   @Output() validationEmit: EventEmitter<boolean> = new EventEmitter();
 
@@ -36,13 +36,23 @@ export class ValidationComponent {
 
     let failedValidationCount: number = 0;
     this.productValidations = [];
-    
-    for(const p of this.cartProducts){
-      let result = await lastValueFrom(this.cartService.validateProduct(p));
 
-      this.productValidations.push(result);
-      if(result)
-        result.isValidationSuccessful? failedValidationCount += 0 : failedValidationCount +=1;
+    for (const p of this.cartProducts) {
+      try {
+        let result = await lastValueFrom(this.cartService.validateProduct(p));
+
+        this.productValidations.push(result);
+
+        if (result)
+          result.isValidationSuccessful
+            ? (failedValidationCount += 0)
+            : (failedValidationCount += 1);
+        else
+          failedValidationCount += 1;
+
+      } catch {
+        failedValidationCount += 1;
+      }
     }
 
     this.isValidationSuccessful = failedValidationCount == 0;
@@ -50,5 +60,4 @@ export class ValidationComponent {
     this.validationEmit.emit(this.isValidationSuccessful);
     this.isValidating = false;
   }
-
 }
