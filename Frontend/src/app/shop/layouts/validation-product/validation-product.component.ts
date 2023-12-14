@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CartProduct } from '../../models/cart-product';
 import { CartService } from '../../services/cart.service';
 import { ValidationCartProduct } from '../../models/validation-cart-product';
+import { Observable, lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'shop-layouts-validation-product',
@@ -10,30 +11,58 @@ import { ValidationCartProduct } from '../../models/validation-cart-product';
 })
 export class ValidationProductComponent implements OnInit {
   totalPrice: number = 0;
-  //@Input({ required: true }) cartProduct: CartProduct | undefined;
-  @Input({required: true}) validationCartProduct : ValidationCartProduct | undefined;
+  validationCartProduct: ValidationCartProduct | null = null;
+
+  @Input({ required: true }) cartProduct: CartProduct | null = null; // A product in the cart
+  @Input({ required: true }) runValidation$: Observable<boolean> =
+    new Observable<boolean>(); //Runs product validation based on the value received
+
+  @Output() isValidationSuccessfulEmit: EventEmitter<ValidationCartProduct> =
+    new EventEmitter<ValidationCartProduct>(); // Outputs boolean value based on validation success
 
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.calculatePrice();
+    this.runValidation$.subscribe({
+      next: async (value) => {
+        if (value) {
+          await this.updateProductValidation();
+          this.calculatePrice();
+        }
+      },
+      error() {},
+    });
+  }
+
+  async updateProductValidation(): Promise<void> {
+    if (this.cartProduct) {
+      let result = await lastValueFrom(
+        this.cartService.validateProduct(this.cartProduct)
+      );
+      this.validationCartProduct = result;
+      this.isValidationSuccessfulEmit.emit(this.validationCartProduct);
+    }
   }
   onPressAdd(): void {
     if (this.validationCartProduct)
       this.cartService.addProduct(this.validationCartProduct.product, 1);
 
+    this.updateProductValidation();
     this.calculatePrice();
   }
 
   onPressRemove(): void {
     if (this.validationCartProduct)
       this.cartService.removeProduct(this.validationCartProduct.product, 1);
+    this.updateProductValidation();
     this.calculatePrice();
   }
 
   onPressRemoveCompletely(): void {
     if (this.validationCartProduct)
-      this.cartService.removeProductCompletely(this.validationCartProduct.product);
+      this.cartService.removeProductCompletely(
+        this.validationCartProduct.product
+      );
   }
 
   calculatePrice(): void {
@@ -41,14 +70,17 @@ export class ValidationProductComponent implements OnInit {
 
     if (this.validationCartProduct) {
       this.totalPrice +=
-        this.validationCartProduct.product.price * this.validationCartProduct.cartProduct.quantity;
+        this.validationCartProduct.product.price *
+        this.validationCartProduct.cartProduct.quantity;
     }
   }
 
-  isValidationSuccessful():boolean{
-
+  isValidationSuccessful(): boolean {
     if (this.validationCartProduct)
-      return this.validationCartProduct.product.quantity >= this.validationCartProduct.cartProduct.quantity;
+      return (
+        this.validationCartProduct.product.quantity >=
+        this.validationCartProduct.cartProduct.quantity
+      );
 
     return false;
   }
